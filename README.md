@@ -172,3 +172,9 @@ python _clash_verge.py ping                    # 控制面连通性
 
 - 💬 **QQ 交流群：`1048143135`**（使用问题、避坑、更新通知）
 - 💎 **开通官方会员**：[Super Grok / ChatGPT Plus / Claude Max → https://tiantianai.86-53-110-54.sslip.io](https://tiantianai.86-53-110-54.sslip.io)
+
+---
+
+## 🔗 Friend Links
+
+- 🐧 [**LinuxDO**](https://linux.do) — A community for tech enthusiasts
