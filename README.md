@@ -199,11 +199,11 @@ python _clash_verge.py ping                    # 控制面连通性
 
 ---
 
-## ☕ 赞赏
+## ☕ 打赏
 
 <div align="center">
 
-<img src="assets/reward_qr.jpg" alt="赞赏码" width="280" />
+<img src="assets/reward_qr.jpg" alt="打赏码" width="280" />
 
 **谢谢老板打赏，您的打赏是我更新的动力！！！**
 
