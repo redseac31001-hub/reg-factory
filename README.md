@@ -249,6 +249,29 @@ cd gmail_android
 .\scripts\build_release.ps1 -BlueStacksInstaller C:\path\to\BlueStacksInstaller.exe
 ```
 
+上传到 GitHub Release：
+
+1. 先运行上面的 `build_release.ps1`，生成 `gmail_android/dist/gmail-android-local.zip`。
+2. 打开 GitHub 仓库页面，进入 `Releases` -> `Draft a new release`。
+3. 新建 tag，例如 `gmail-android-v2026.06.06`。
+4. 把 `gmail_android/dist/gmail-android-local.zip` 拖到 release 附件区域，然后发布。
+
+也可以用 GitHub CLI 上传：
+
+```powershell
+cd E:\reg-factory
+gh auth login
+gh release create gmail-android-v2026.06.06 `
+  .\gmail_android\dist\gmail-android-local.zip `
+  --title "Gmail Android Local Package" `
+  --notes "Gmail Android/Appium local installer package."
+
+# 如果 release 已经存在，改用 upload
+gh release upload gmail-android-v2026.06.06 `
+  .\gmail_android\dist\gmail-android-local.zip `
+  --clobber
+```
+
 ### Gmail Android 使用
 
 复制环境模板：

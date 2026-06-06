@@ -13,6 +13,7 @@
 - 根 `.env.example` 增加 Gmail Android/Appium 相关环境变量：`APPIUM_SERVER`、`ANDROID_DEVICE`、`GMAIL_USERNAME_PREFIX`、`ACCEPT_TERMS`、`SMS_PROJECT_ID_GMAIL`、`HERO_SMS_SERVICE_GMAIL` 等。
 - 根 `requirements.txt` 增加 `Appium-Python-Client` 和 `selenium`。
 - 根 README 增加 Gmail Android 安装包的安装、配置、运行和 Release 打包说明。
+- README 补充 GitHub Release 安装包上传流程，覆盖网页上传和 `gh release` 命令两种方式。
 
 **安全边界**
 - Gmail 手机/SMS/CAPTCHA 和 Google 额外安全验证默认由人工完成；脚本支持 `--resume-after-phone` 续跑。

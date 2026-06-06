@@ -55,6 +55,47 @@ Direct BlueStacks-only install/config:
 .\scripts\install_bluestacks.ps1
 ```
 
+## Build And Upload Release
+
+Build the distributable zip from the repository root:
+
+```powershell
+cd gmail_android
+.\scripts\build_release.ps1
+
+# Bundle a fixed BlueStacks installer
+.\scripts\build_release.ps1 -BlueStacksInstaller C:\path\to\BlueStacksInstaller.exe
+```
+
+The output file is:
+
+```text
+gmail_android\dist\gmail-android-local.zip
+```
+
+Upload it from the GitHub web UI:
+
+1. Open the repository on GitHub.
+2. Go to `Releases` -> `Draft a new release`.
+3. Create a tag such as `gmail-android-v2026.06.06`.
+4. Attach `gmail_android\dist\gmail-android-local.zip` and publish the release.
+
+Or upload with GitHub CLI:
+
+```powershell
+cd E:\reg-factory
+gh auth login
+gh release create gmail-android-v2026.06.06 `
+  .\gmail_android\dist\gmail-android-local.zip `
+  --title "Gmail Android Local Package" `
+  --notes "Gmail Android/Appium local installer package."
+
+# If the release already exists
+gh release upload gmail-android-v2026.06.06 `
+  .\gmail_android\dist\gmail-android-local.zip `
+  --clobber
+```
+
 ## Emulator Setup
 
 1. Run `.\scripts\install_all_windows.ps1`, or install BlueStacks manually.
