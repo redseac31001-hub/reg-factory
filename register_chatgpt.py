@@ -628,12 +628,16 @@ async def register_one(index, total, p):
             async def _fetch_email_code():
                 """取一次码：先 Graph token，失败再浏览器登录 Outlook 取信。
                 取码窗口**跨 resend 复用**：已登录就只刷新收件箱轮询(skip_login)，不关窗不重登。
-                窗口统一在 Step 4 结束后的兜底处一次性 teardown。"""
+                窗口统一在 Step 4 结束后的兜底处一次性 teardown。
+                有可用 Graph token(has_token)时**只走 Graph API、不开浏览器**：API 取码已直连可靠，
+                浏览器兜底只是去查同一个收件箱、纯浪费；取不到码该靠上层 resend 重发，而非开窗口。"""
                 nonlocal mail_bb, mail_pid, mail_page, mail_logged_in
                 c = await asyncio.get_event_loop().run_in_executor(
                     None, get_code_by_token, email, refresh_token, client_id or None,
                     OAI_SENDER, OAI_SUBJECT, r"\b(\d{6})\b", 40, 5
                 )
+                if c or has_token:
+                    return c  # 有 token：拿到就返回；没拿到也直接回(交给上层 resend)，不开浏览器
                 if not c and email_pw:
                     # 窗口没了才开新窗(首次没 prelogin、或窗口意外掉线)；否则复用同一窗口
                     if mail_page is None:
