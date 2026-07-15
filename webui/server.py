@@ -386,6 +386,23 @@ def _test_firefox():
         return False, f"firefox.fun 请求失败：{str(e)[:80]}"
 
 
+def _test_yyds():
+    """Create one YYDS inbox using the values currently shown in the config form."""
+    key = _read_config_val("YYDS_API_KEY", "").strip()
+    base = _read_config_val("YYDS_BASE_URL", "https://maliapi.215.im").strip()
+    if not key:
+        return False, "未配置 YYDS_API_KEY"
+    try:
+        from common.temp_email import create_mailbox
+        mb = create_mailbox(provider="yyds", api_key=key, base_url=base)
+        return True, f"YYDS 连通，建号成功 ✓ {mb['email']}"
+    except Exception as e:
+        detail = str(e)[:180]
+        if "404" in detail:
+            detail += "；Base URL 应为 https://maliapi.215.im（不要附加 /v1/accounts）"
+        return False, detail
+
+
 def _test_k12():
     status = _k12_status()
     return status["alive"], status["message"] + f"（{status['url']}）"
@@ -397,6 +414,7 @@ _TESTERS = {
     "bitbrowser": _test_bitbrowser,
     "smsman": _test_smsman,
     "firefox": _test_firefox,
+    "yyds": _test_yyds,
 }
 
 

@@ -304,12 +304,12 @@ ENV_SCHEMA = [
     {"group": "Outlook 自注册", "items": [
         {"key": "OUTLOOK_PROXIES", "help": "Outlook 自注册住宅代理池(换行/逗号分隔)"},
     ]},
-    {"group": "临时邮箱(Grok 注册取码)", "items": [
+    {"group": "临时邮箱(Grok 注册取码)", "tests": [{"target": "yyds", "label": "测试 YYDS"}], "items": [
         {"key": "TEMP_EMAIL_PROVIDER", "type": "choice",
          "choices": ["yyds", "gptmail", "moemail", "cfmail", "custom"], "default": "yyds",
          "help": "Grok 注册默认用的临时邮箱 provider(需配好对应 key)。也可在「Grok 注册」表单里临时指定。"},
         {"key": "YYDS_API_KEY", "secret": True, "help": "YYDS Mail key(profile 页,AC- 开头)"},
-        {"key": "YYDS_BASE_URL", "default": "https://maliapi.215.im", "help": "YYDS Mail 接口地址"},
+        {"key": "YYDS_BASE_URL", "default": "https://maliapi.215.im", "help": "YYDS Mail API 根地址；可粘贴 vip.215.im 或完整 /v1/accounts 地址，程序会自动纠正"},
         {"key": "GPTMAIL_API_KEY", "secret": True, "help": "GPTMail key(mail.chatgpt.org.uk)"},
         {"key": "MOEMAIL_API_KEY", "secret": True, "help": "MoeMail key(自部署)"},
         {"key": "MOEMAIL_BASE_URL", "help": "MoeMail 自部署地址"},
